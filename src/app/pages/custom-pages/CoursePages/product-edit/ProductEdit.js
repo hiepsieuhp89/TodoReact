@@ -44,7 +44,7 @@ export function ProductEdit({
 
   useEffect(() => {
     if(id)
-      fetch(`${process.env.REACT_APP_WEBSERVER_API_URL}/auths/${id}`)
+      fetch(`${process.env.REACT_APP_WEBSERVER_API_URL}/auths/${id}?token=${localStorage.getItem('token')}`)
       .then(res => res.json()).then((result) => {
         setProductForEdit({id: result._id, ...result._source});
       });
@@ -73,7 +73,7 @@ export function ProductEdit({
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(course)
+      body: JSON.stringify({token:localStorage.getItem('token'),...course})
     })
     .then(res => res.json()).then((result) => {
       if(!result.status == "created"){
@@ -83,6 +83,7 @@ export function ProductEdit({
         console.log("created user: ")
         console.log(course)
         setMessages([{message:"Tạo người dùng thành công", variant:"success"}])
+        window.location.href="/"
         backToProductsList()
       }
     })
@@ -94,12 +95,14 @@ export function ProductEdit({
   function updateCourse(course){
     console.log("user updating: ")
     console.log(course)
+    delete course.token;
     fetch(`${process.env.REACT_APP_WEBSERVER_API_URL}/auths/${id}`,{
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(course)
+
+      body: JSON.stringify({token:localStorage.getItem('token'),...course})
     })
     .then(res => res.json()).then((result) => {
       if(!result.status == "updated"){
@@ -109,6 +112,7 @@ export function ProductEdit({
         console.log("updated course: ")
         console.log(course)
         setMessages([{message:"Sửa thông tin người dùng thành công", variant:"success"}])
+        window.location.href="/"
         backToProductsList()
       }
     })
