@@ -1,41 +1,41 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { ProductsLoadingDialog } from "./products-loading-dialog/ProductsLoadingDialog";
-import { ProductDeleteDialog } from "./product-delete-dialog/ProductDeleteDialog";
-import { ProductsDeleteDialog } from "./products-delete-dialog/ProductsDeleteDialog";
-import { ProductsFetchDialog } from "./products-fetch-dialog/ProductsFetchDialog";
-import { ProductsUpdateStatusDialog } from "./products-update-status-dialog/ProductsUpdateStatusDialog";
-import { ProductsCard } from "./ProductsCard";
-import { ProductsUIProvider } from "./ProductsUIContext";
+import { TodosLoadingDialog } from "./products-loading-dialog/TodosLoadingDialog";
+import { TodoDeleteDialog } from "./product-delete-dialog/TodoDeleteDialog";
+import { TodosDeleteDialog } from "./products-delete-dialog/TodosDeleteDialog";
+import { TodosFetchDialog } from "./products-fetch-dialog/TodosFetchDialog";
+import { TodosUpdateStatusDialog } from "./products-update-status-dialog/TodosUpdateStatusDialog";
+import { TodosCard } from "./TodosCard";
+import { TodosUIProvider } from "./TodosUIContext";
 
-export function ProductsPage({ history }) {
+export function TodosPage({ history }) {
   const productsUIEvents = {
-    newProductButtonClick: () => {
+    newTodoButtonClick: () => {
       history.push("/e-commerce/products/new");
     },
-    openEditProductPage: (id) => {
+    openEditTodoPage: (id) => {
       history.push(`/e-commerce/products/${id}/edit`);
     },
-    openDeleteProductDialog: (id) => {
+    openDeleteTodoDialog: (id) => {
       history.push(`/e-commerce/products/${id}/delete`);
     },
-    openDeleteProductsDialog: () => {
-      history.push(`/e-commerce/products/deleteProducts`);
+    openDeleteTodosDialog: () => {
+      history.push(`/e-commerce/products/deleteTodos`);
     },
-    openFetchProductsDialog: () => {
+    openFetchTodosDialog: () => {
       history.push(`/e-commerce/products/fetch`);
     },
-    openUpdateProductsStatusDialog: () => {
+    openUpdateTodosStatusDialog: () => {
       history.push("/e-commerce/products/updateStatus");
     },
   };
 
   return (
-    <ProductsUIProvider productsUIEvents={productsUIEvents}>
-      <ProductsLoadingDialog />
-      <Route path="/e-commerce/products/deleteProducts">
+    <TodosUIProvider productsUIEvents={productsUIEvents}>
+      <TodosLoadingDialog />
+      <Route path="/e-commerce/products/deleteTodos">
         {({ history, match }) => (
-          <ProductsDeleteDialog
+          <TodosDeleteDialog
             show={match != null}
             onHide={() => {
               history.push("/e-commerce/products");
@@ -45,7 +45,7 @@ export function ProductsPage({ history }) {
       </Route>
       <Route path="/e-commerce/products/:id/delete">
         {({ history, match }) => (
-          <ProductDeleteDialog
+          <TodoDeleteDialog
             show={match != null}
             id={match && match.params.id}
             onHide={() => {
@@ -56,7 +56,7 @@ export function ProductsPage({ history }) {
       </Route>
       <Route path="/e-commerce/products/fetch">
         {({ history, match }) => (
-          <ProductsFetchDialog
+          <TodosFetchDialog
             show={match != null}
             onHide={() => {
               history.push("/e-commerce/products");
@@ -66,7 +66,7 @@ export function ProductsPage({ history }) {
       </Route>
       <Route path="/e-commerce/products/updateStatus">
         {({ history, match }) => (
-          <ProductsUpdateStatusDialog
+          <TodosUpdateStatusDialog
             show={match != null}
             onHide={() => {
               history.push("/e-commerce/products");
@@ -74,7 +74,7 @@ export function ProductsPage({ history }) {
           />
         )}
       </Route>
-      <ProductsCard />
-    </ProductsUIProvider>
+      <TodosCard />
+    </TodosUIProvider>
   );
 }

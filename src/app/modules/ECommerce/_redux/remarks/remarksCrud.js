@@ -9,7 +9,7 @@ export function createRemark(remark) {
 
 // READ
 // Server should return filtered remarks by productId
-export function getAllProductRemarksByProductId(productId) {
+export function getAllTodoRemarksByTodoId(productId) {
   return axios.get(`${REMARKS_URL}?productId=${productId}`);
 }
 

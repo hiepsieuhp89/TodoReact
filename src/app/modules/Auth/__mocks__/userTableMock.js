@@ -31,11 +31,11 @@ export default [
         memberRegistration: true,
       },
       updatesFromKeenthemes: {
-        newsAboutKeenthemesProductsAndFeatureUpdates: false,
+        newsAboutKeenthemesTodosAndFeatureUpdates: false,
         tipsOnGettingMoreOutOfKeen: false,
         thingsYouMissedSindeYouLastLoggedIntoKeen: true,
-        newsAboutMetronicOnPartnerProductsAndOtherServices: true,
-        tipsOnMetronicBusinessProducts: true,
+        newsAboutMetronicOnPartnerTodosAndOtherServices: true,
+        tipsOnMetronicBusinessTodos: true,
       },
     },
     communication: {
@@ -90,11 +90,11 @@ export default [
         memberRegistration: true,
       },
       updatesFromKeenthemes: {
-        newsAboutKeenthemesProductsAndFeatureUpdates: false,
+        newsAboutKeenthemesTodosAndFeatureUpdates: false,
         tipsOnGettingMoreOutOfKeen: false,
         thingsYouMissedSindeYouLastLoggedIntoKeen: true,
-        newsAboutMetronicOnPartnerProductsAndOtherServices: true,
-        tipsOnMetronicBusinessProducts: true,
+        newsAboutMetronicOnPartnerTodosAndOtherServices: true,
+        tipsOnMetronicBusinessTodos: true,
       },
     },
     address: {
@@ -144,11 +144,11 @@ export default [
         memberRegistration: true,
       },
       updatesFromKeenthemes: {
-        newsAboutKeenthemesProductsAndFeatureUpdates: false,
+        newsAboutKeenthemesTodosAndFeatureUpdates: false,
         tipsOnGettingMoreOutOfKeen: false,
         thingsYouMissedSindeYouLastLoggedIntoKeen: true,
-        newsAboutMetronicOnPartnerProductsAndOtherServices: true,
-        tipsOnMetronicBusinessProducts: true,
+        newsAboutMetronicOnPartnerTodosAndOtherServices: true,
+        tipsOnMetronicBusinessTodos: true,
       },
     },
     address: {

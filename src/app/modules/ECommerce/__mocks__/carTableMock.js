@@ -294,7 +294,7 @@ export default [
     modelYear: 2008,
     mileage: 157019,
     // eslint-disable-next-line
-    description: `Production of the first generation Land Cruiser began in 1951 (90 units) as Toyota's version of a Jeep-like vehicle.[2][3] The Land Cruiser has been produced in convertible, hardtop, station wagon and cab chassis versions. The Land Cruiser's reliability and longevity has led to huge popularity, especially in Australia where it is the best-selling body-on-frame, four-wheel drive vehicle.[4] Toyota also extensively tests the Land Cruiser in the Australian outback – considered to be one of the toughest operating environments in both temperature and terrain. In Japan, the Land Cruiser is exclusive to Toyota Japanese dealerships called Toyota Store.`,
+    description: `Todoion of the first generation Land Cruiser began in 1951 (90 units) as Toyota's version of a Jeep-like vehicle.[2][3] The Land Cruiser has been produced in convertible, hardtop, station wagon and cab chassis versions. The Land Cruiser's reliability and longevity has led to huge popularity, especially in Australia where it is the best-selling body-on-frame, four-wheel drive vehicle.[4] Toyota also extensively tests the Land Cruiser in the Australian outback – considered to be one of the toughest operating environments in both temperature and terrain. In Japan, the Land Cruiser is exclusive to Toyota Japanese dealerships called Toyota Store.`,
     color: "Crimson",
     price: 72638,
     condition: 1,

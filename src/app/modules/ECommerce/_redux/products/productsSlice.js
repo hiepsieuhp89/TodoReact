@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const initialProductsState = {
+const initialTodosState = {
   listLoading: false,
   actionsLoading: false,
   totalCount: 0,
@@ -15,7 +15,7 @@ export const callTypes = {
 
 export const productsSlice = createSlice({
   name: "products",
-  initialState: initialProductsState,
+  initialState: initialTodosState,
   reducers: {
     catchError: (state, action) => {
       state.error = `${action.type}: ${action.payload.error}`;
@@ -33,13 +33,13 @@ export const productsSlice = createSlice({
         state.actionsLoading = true;
       }
     },
-    // getProductById
+    // getTodoById
     productFetched: (state, action) => {
       state.actionsLoading = false;
       state.productForEdit = action.payload.productForEdit;
       state.error = null;
     },
-    // findProducts
+    // findTodos
     productsFetched: (state, action) => {
       const { totalCount, entities } = action.payload;
       state.listLoading = false;
@@ -47,13 +47,13 @@ export const productsSlice = createSlice({
       state.entities = entities;
       state.totalCount = totalCount;
     },
-    // createProduct
+    // createTodo
     productCreated: (state, action) => {
       state.actionsLoading = false;
       state.error = null;
       state.entities.push(action.payload.product);
     },
-    // updateProduct
+    // updateTodo
     productUpdated: (state, action) => {
       state.error = null;
       state.actionsLoading = false;
@@ -64,13 +64,13 @@ export const productsSlice = createSlice({
         return entity;
       });
     },
-    // deleteProduct
+    // deleteTodo
     productDeleted: (state, action) => {
       state.error = null;
       state.actionsLoading = false;
       state.entities = state.entities.filter(el => el.id !== action.payload.id);
     },
-    // deleteProducts
+    // deleteTodos
     productsDeleted: (state, action) => {
       state.error = null;
       state.actionsLoading = false;

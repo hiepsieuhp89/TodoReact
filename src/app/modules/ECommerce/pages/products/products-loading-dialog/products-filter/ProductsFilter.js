@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { Formik } from "formik";
 import { isEqual } from "lodash";
-import { useProductsUIContext } from "../ProductsUIContext";
+import { useTodosUIContext } from "../TodosUIContext";
 
 const prepareFilter = (queryParams, values) => {
   const { status, condition, searchText } = values;
@@ -21,9 +21,9 @@ const prepareFilter = (queryParams, values) => {
   return newQueryParams;
 };
 
-export function ProductsFilter({ listLoading }) {
-  // Products UI Context
-  const productsUIContext = useProductsUIContext();
+export function TodosFilter({ listLoading }) {
+  // Todos UI Context
+  const productsUIContext = useTodosUIContext();
   const productsUIProps = useMemo(() => {
     return {
       setQueryParams: productsUIContext.setQueryParams,

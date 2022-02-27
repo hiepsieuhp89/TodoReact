@@ -3,10 +3,10 @@ import {productsSlice, callTypes} from "./productsSlice";
 
 const {actions} = productsSlice;
 
-export const fetchProducts = queryParams => dispatch => {
+export const fetchTodos = queryParams => dispatch => {
   dispatch(actions.startCall({ callType: callTypes.list }));
   return requestFromServer
-    .findProducts(queryParams)
+    .findTodos(queryParams)
     .then(response => {
       const { totalCount, entities } = response.data;
       dispatch(actions.productsFetched({ totalCount, entities }));
@@ -17,14 +17,14 @@ export const fetchProducts = queryParams => dispatch => {
     });
 };
 
-export const fetchProduct = id => dispatch => {
+export const fetchTodo = id => dispatch => {
   if (!id) {
     return dispatch(actions.productFetched({ productForEdit: undefined }));
   }
 
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .getProductById(id)
+    .getTodoById(id)
     .then(response => {
       const product = response.data;
       dispatch(actions.productFetched({ productForEdit: product }));
@@ -35,10 +35,10 @@ export const fetchProduct = id => dispatch => {
     });
 };
 
-export const deleteProduct = id => dispatch => {
+export const deleteTodo = id => dispatch => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .deleteProduct(id)
+    .deleteTodo(id)
     .then(response => {
       dispatch(actions.productDeleted({ id }));
     })
@@ -48,10 +48,10 @@ export const deleteProduct = id => dispatch => {
     });
 };
 
-export const createProduct = productForCreation => dispatch => {
+export const createTodo = productForCreation => dispatch => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .createProduct(productForCreation)
+    .createTodo(productForCreation)
     .then(response => {
       const { product } = response.data;
       dispatch(actions.productCreated({ product }));
@@ -62,10 +62,10 @@ export const createProduct = productForCreation => dispatch => {
     });
 };
 
-export const updateProduct = product => dispatch => {
+export const updateTodo = product => dispatch => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .updateProduct(product)
+    .updateTodo(product)
     .then(() => {
       dispatch(actions.productUpdated({ product }));
     })
@@ -75,10 +75,10 @@ export const updateProduct = product => dispatch => {
     });
 };
 
-export const updateProductsStatus = (ids, status) => dispatch => {
+export const updateTodosStatus = (ids, status) => dispatch => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .updateStatusForProducts(ids, status)
+    .updateStatusForTodos(ids, status)
     .then(() => {
       dispatch(actions.productsStatusUpdated({ ids, status }));
     })
@@ -88,10 +88,10 @@ export const updateProductsStatus = (ids, status) => dispatch => {
     });
 };
 
-export const deleteProducts = ids => dispatch => {
+export const deleteTodos = ids => dispatch => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .deleteProducts(ids)
+    .deleteTodos(ids)
     .then(() => {
       dispatch(actions.productsDeleted({ ids }));
     })

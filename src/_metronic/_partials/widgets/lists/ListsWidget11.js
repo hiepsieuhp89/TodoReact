@@ -109,7 +109,7 @@ export function ListsWidget11({ className }) {
                 href="#"
                 className="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1"
               >
-                Product goals strategy meet-up
+                Todo goals strategy meet-up
               </a>
               <span className="text-muted font-weight-bold">Due in 2 Days</span>
             </div>

@@ -5,48 +5,48 @@ import {
   CardHeader,
   CardHeaderToolbar,
 } from "../../../../../_metronic/_partials/controls";
-import { ProductsFilter } from "./products-filter/ProductsFilter";
-import { ProductsTable } from "./products-table/ProductsTable";
-import { ProductsGrouping } from "./products-grouping/ProductsGrouping";
-import { useProductsUIContext } from "./ProductsUIContext";
+import { TodosFilter } from "./products-filter/TodosFilter";
+import { TodosTable } from "./products-table/TodosTable";
+import { TodosGrouping } from "./products-grouping/TodosGrouping";
+import { useTodosUIContext } from "./TodosUIContext";
 
-export function ProductsCard() {
-  const productsUIContext = useProductsUIContext();
+export function TodosCard() {
+  const productsUIContext = useTodosUIContext();
   const productsUIProps = useMemo(() => {
     return {
       ids: productsUIContext.ids,
       queryParams: productsUIContext.queryParams,
       setQueryParams: productsUIContext.setQueryParams,
-      newProductButtonClick: productsUIContext.newProductButtonClick,
-      openDeleteProductsDialog: productsUIContext.openDeleteProductsDialog,
-      openEditProductPage: productsUIContext.openEditProductPage,
-      openUpdateProductsStatusDialog:
-        productsUIContext.openUpdateProductsStatusDialog,
-      openFetchProductsDialog: productsUIContext.openFetchProductsDialog,
+      newTodoButtonClick: productsUIContext.newTodoButtonClick,
+      openDeleteTodosDialog: productsUIContext.openDeleteTodosDialog,
+      openEditTodoPage: productsUIContext.openEditTodoPage,
+      openUpdateTodosStatusDialog:
+        productsUIContext.openUpdateTodosStatusDialog,
+      openFetchTodosDialog: productsUIContext.openFetchTodosDialog,
     };
   }, [productsUIContext]);
 
   return (
     <Card>
-      <CardHeader title="Products list">
+      <CardHeader title="Todos list">
         <CardHeaderToolbar>
           <button
             type="button"
             className="btn btn-primary"
-            onClick={productsUIProps.newProductButtonClick}
+            onClick={productsUIProps.newTodoButtonClick}
           >
-            New Product
+            New Todo
           </button>
         </CardHeaderToolbar>
       </CardHeader>
       <CardBody>
-        <ProductsFilter />
+        <TodosFilter />
         {productsUIProps.ids.length > 0 && (
           <>
-            <ProductsGrouping />
+            <TodosGrouping />
           </>
         )}
-        <ProductsTable />
+        <TodosTable />
       </CardBody>
     </Card>
   );

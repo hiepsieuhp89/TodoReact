@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Modal } from "react-bootstrap";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { ProductStatusCssClasses } from "../ProductsUIHelpers";
+import { TodoStatusCssClasses } from "../TodosUIHelpers";
 import * as actions from "../../../_redux/products/productsActions";
-import { useProductsUIContext } from "../ProductsUIContext";
+import { useTodosUIContext } from "../TodosUIContext";
 
-const selectedProducts = (entities, ids) => {
+const selectedTodos = (entities, ids) => {
   const _products = [];
   ids.forEach((id) => {
     const product = entities.find((el) => el.id === id);
@@ -16,9 +16,9 @@ const selectedProducts = (entities, ids) => {
   return _products;
 };
 
-export function ProductsUpdateStatusDialog({ show, onHide }) {
-  // Products UI Context
-  const productsUIContext = useProductsUIContext();
+export function TodosUpdateStatusDialog({ show, onHide }) {
+  // Todos UI Context
+  const productsUIContext = useTodosUIContext();
   const productsUIProps = useMemo(() => {
     return {
       ids: productsUIContext.ids,
@@ -27,10 +27,10 @@ export function ProductsUpdateStatusDialog({ show, onHide }) {
     };
   }, [productsUIContext]);
 
-  // Products Redux state
+  // Todos Redux state
   const { products, isLoading } = useSelector(
     (state) => ({
-      products: selectedProducts(state.products.entities, productsUIProps.ids),
+      products: selectedTodos(state.products.entities, productsUIProps.ids),
       isLoading: state.products.actionsLoading,
     }),
     shallowEqual
@@ -49,10 +49,10 @@ export function ProductsUpdateStatusDialog({ show, onHide }) {
   const dispatch = useDispatch();
   const updateStatus = () => {
     // server request for updateing product by ids
-    dispatch(actions.updateProductsStatus(productsUIProps.ids, status)).then(
+    dispatch(actions.updateTodosStatus(productsUIProps.ids, status)).then(
       () => {
         // refresh list after deletion
-        dispatch(actions.fetchProducts(productsUIProps.queryParams)).then(
+        dispatch(actions.fetchTodos(productsUIProps.queryParams)).then(
           () => {
             // clear selections list
             productsUIProps.setIds([]);
@@ -88,7 +88,7 @@ export function ProductsUpdateStatusDialog({ show, onHide }) {
                 <span className="list-timeline-text">
                   <span
                     className={`label label-lg label-light-${
-                      ProductStatusCssClasses[product.status]
+                      TodoStatusCssClasses[product.status]
                     } label-inline`}
                     style={{ width: "60px" }}
                   >
@@ -106,7 +106,7 @@ export function ProductsUpdateStatusDialog({ show, onHide }) {
       <Modal.Footer className="form">
         <div className="form-group">
           <select
-            className={`form-control ${ProductStatusCssClasses[status]}`}
+            className={`form-control ${TodoStatusCssClasses[status]}`}
             value={status}
             onChange={(e) => setStatus(+e.target.value)}
           >

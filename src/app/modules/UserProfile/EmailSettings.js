@@ -28,14 +28,14 @@ function EmailSettings(props) {
           memberRegistration: values.memberRegistration,
         },
         updatesFromKeenthemes: {
-          newsAboutKeenthemesProductsAndFeatureUpdates:
-            values.newsAboutKeenthemesProductsAndFeatureUpdates,
+          newsAboutKeenthemesTodosAndFeatureUpdates:
+            values.newsAboutKeenthemesTodosAndFeatureUpdates,
           tipsOnGettingMoreOutOfKeen: values.tipsOnGettingMoreOutOfKeen,
           thingsYouMissedSindeYouLastLoggedIntoKeen:
             values.thingsYouMissedSindeYouLastLoggedIntoKeen,
-          newsAboutMetronicOnPartnerProductsAndOtherServices:
-            values.newsAboutMetronicOnPartnerProductsAndOtherServices,
-          tipsOnMetronicBusinessProducts: values.tipsOnMetronicBusinessProducts,
+          newsAboutMetronicOnPartnerTodosAndOtherServices:
+            values.newsAboutMetronicOnPartnerTodosAndOtherServices,
+          tipsOnMetronicBusinessTodos: values.tipsOnMetronicBusinessTodos,
         },
       },
     });
@@ -71,19 +71,19 @@ function EmailSettings(props) {
       user.emailSettings.activityRelatesEmail.newMembershipApproval,
     memberRegistration:
       user.emailSettings.activityRelatesEmail.memberRegistration,
-    newsAboutKeenthemesProductsAndFeatureUpdates:
+    newsAboutKeenthemesTodosAndFeatureUpdates:
       user.emailSettings.updatesFromKeenthemes
-        .newsAboutKeenthemesProductsAndFeatureUpdates,
+        .newsAboutKeenthemesTodosAndFeatureUpdates,
     tipsOnGettingMoreOutOfKeen:
       user.emailSettings.updatesFromKeenthemes.tipsOnGettingMoreOutOfKeen,
     thingsYouMissedSindeYouLastLoggedIntoKeen:
       user.emailSettings.updatesFromKeenthemes
         .thingsYouMissedSindeYouLastLoggedIntoKeen,
-    newsAboutMetronicOnPartnerProductsAndOtherServices:
+    newsAboutMetronicOnPartnerTodosAndOtherServices:
       user.emailSettings.updatesFromKeenthemes
-        .newsAboutMetronicOnPartnerProductsAndOtherServices,
-    tipsOnMetronicBusinessProducts:
-      user.emailSettings.updatesFromKeenthemes.tipsOnMetronicBusinessProducts,
+        .newsAboutMetronicOnPartnerTodosAndOtherServices,
+    tipsOnMetronicBusinessTodos:
+      user.emailSettings.updatesFromKeenthemes.tipsOnMetronicBusinessTodos,
   };
   const Schema = Yup.object().shape({
     emailNotification: Yup.bool(),
@@ -94,11 +94,11 @@ function EmailSettings(props) {
     uponNewOrder: Yup.bool(),
     newMembershipApproval: Yup.bool(),
     memberRegistration: Yup.bool(),
-    newsAboutKeenthemesProductsAndFeatureUpdates: Yup.bool(),
+    newsAboutKeenthemesTodosAndFeatureUpdates: Yup.bool(),
     tipsOnGettingMoreOutOfKeen: Yup.bool(),
     thingsYouMissedSindeYouLastLoggedIntoKeen: Yup.bool(),
-    newsAboutMetronicOnPartnerProductsAndOtherServices: Yup.bool(),
-    tipsOnMetronicBusinessProducts: Yup.bool(),
+    newsAboutMetronicOnPartnerTodosAndOtherServices: Yup.bool(),
+    tipsOnMetronicBusinessTodos: Yup.bool(),
   });
   const formik = useFormik({
     initialValues,
@@ -290,9 +290,9 @@ function EmailSettings(props) {
                 <label className="checkbox">
                   <input
                     type="checkbox"
-                    name="newsAboutKeenthemesProductsAndFeatureUpdates"
+                    name="newsAboutKeenthemesTodosAndFeatureUpdates"
                     checked={
-                      formik.values.newsAboutKeenthemesProductsAndFeatureUpdates
+                      formik.values.newsAboutKeenthemesTodosAndFeatureUpdates
                     }
                     onChange={formik.handleChange}
                   />
@@ -322,10 +322,10 @@ function EmailSettings(props) {
                 <label className="checkbox">
                   <input
                     type="checkbox"
-                    name="newsAboutMetronicOnPartnerProductsAndOtherServices"
+                    name="newsAboutMetronicOnPartnerTodosAndOtherServices"
                     checked={
                       formik.values
-                        .newsAboutMetronicOnPartnerProductsAndOtherServices
+                        .newsAboutMetronicOnPartnerTodosAndOtherServices
                     }
                     onChange={formik.handleChange}
                   />
@@ -335,8 +335,8 @@ function EmailSettings(props) {
                 <label className="checkbox">
                   <input
                     type="checkbox"
-                    name="tipsOnMetronicBusinessProducts"
-                    checked={formik.values.tipsOnMetronicBusinessProducts}
+                    name="tipsOnMetronicBusinessTodos"
+                    checked={formik.values.tipsOnMetronicBusinessTodos}
                     onChange={formik.handleChange}
                   />
                   <span></span>Tips on Metronic business products

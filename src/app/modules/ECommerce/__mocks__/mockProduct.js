@@ -1,7 +1,7 @@
 import carTableMock from "./carTableMock";
 import MockUtils from "./mock.utils";
 
-export default function mockProducts(mock) {
+export default function mockTodos(mock) {
   mock.onPost("api/products").reply(({ data }) => {
     const { product } = JSON.parse(data);
     const {
@@ -17,8 +17,8 @@ export default function mockProducts(mock) {
       VINCode = ""
     } = product;
 
-    const id = generateProductId();
-    const newProduct = {
+    const id = generateTodoId();
+    const newTodo = {
       id,
       model,
       manufacture,
@@ -31,18 +31,18 @@ export default function mockProducts(mock) {
       status,
       VINCode
     };
-    carTableMock.push(newProduct);
-    return [200, { product: newProduct }];
+    carTableMock.push(newTodo);
+    return [200, { product: newTodo }];
   });
 
   mock.onPost("api/products/find").reply(config => {
     const mockUtils = new MockUtils();
     const { queryParams } = JSON.parse(config.data);
-    const filteredProducts = mockUtils.baseFilter(carTableMock, queryParams);
-    return [200, filteredProducts];
+    const filteredTodos = mockUtils.baseFilter(carTableMock, queryParams);
+    return [200, filteredTodos];
   });
 
-  mock.onPost("api/products/deleteProducts").reply(config => {
+  mock.onPost("api/products/deleteTodos").reply(config => {
     const { ids } = JSON.parse(config.data);
     ids.forEach(id => {
       const index = carTableMock.findIndex(el => el.id === id);
@@ -53,7 +53,7 @@ export default function mockProducts(mock) {
     return [200];
   });
 
-  mock.onPost("api/products/updateStatusForProducts").reply(config => {
+  mock.onPost("api/products/updateStatusForTodos").reply(config => {
     const { ids, status } = JSON.parse(config.data);
     carTableMock.forEach(el => {
       if (ids.findIndex(id => id === el.id) > -1) {
@@ -97,7 +97,7 @@ export default function mockProducts(mock) {
   });
 }
 
-function generateProductId() {
+function generateTodoId() {
   const ids = carTableMock.map(el => el.id);
   const maxId = Math.max(...ids);
   return maxId + 1;

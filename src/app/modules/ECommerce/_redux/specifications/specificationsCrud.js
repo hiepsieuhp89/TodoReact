@@ -9,7 +9,7 @@ export function createSpecification(specification) {
 
 // READ
 // Server should return filtered specifications by productId
-export function getAllProductSpecificationsByProductId(productId) {
+export function getAllTodoSpecificationsByTodoId(productId) {
   return axios.get(`${SPECIFICATIONS_URL}?productId=${productId}`);
 }
 

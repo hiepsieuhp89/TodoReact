@@ -1,16 +1,16 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 import { isEqual, isFunction } from "lodash";
-import { initialFilter } from "./ProductsUIHelpers";
+import { initialFilter } from "./TodosUIHelpers";
 
-const ProductsUIContext = createContext();
+const TodosUIContext = createContext();
 
-export function useProductsUIContext() {
-  return useContext(ProductsUIContext);
+export function useTodosUIContext() {
+  return useContext(TodosUIContext);
 }
 
-export const ProductsUIConsumer = ProductsUIContext.Consumer;
+export const TodosUIConsumer = TodosUIContext.Consumer;
 
-export function ProductsUIProvider({ productsUIEvents, children }) {
+export function TodosUIProvider({ productsUIEvents, children }) {
   const [queryParams, setQueryParamsBase] = useState(initialFilter);
   const [ids, setIds] = useState([]);
   const setQueryParams = useCallback((nextQueryParams) => {
@@ -33,18 +33,18 @@ export function ProductsUIProvider({ productsUIEvents, children }) {
     ids,
     setIds,
     setQueryParams,
-    newProductButtonClick: productsUIEvents.newProductButtonClick,
-    openEditProductPage: productsUIEvents.openEditProductPage,
-    openDeleteProductDialog: productsUIEvents.openDeleteProductDialog,
-    openDeleteProductsDialog: productsUIEvents.openDeleteProductsDialog,
-    openFetchProductsDialog: productsUIEvents.openFetchProductsDialog,
-    openUpdateProductsStatusDialog:
-      productsUIEvents.openUpdateProductsStatusDialog,
+    newTodoButtonClick: productsUIEvents.newTodoButtonClick,
+    openEditTodoPage: productsUIEvents.openEditTodoPage,
+    openDeleteTodoDialog: productsUIEvents.openDeleteTodoDialog,
+    openDeleteTodosDialog: productsUIEvents.openDeleteTodosDialog,
+    openFetchTodosDialog: productsUIEvents.openFetchTodosDialog,
+    openUpdateTodosStatusDialog:
+      productsUIEvents.openUpdateTodosStatusDialog,
   };
 
   return (
-    <ProductsUIContext.Provider value={value}>
+    <TodosUIContext.Provider value={value}>
       {children}
-    </ProductsUIContext.Provider>
+    </TodosUIContext.Provider>
   );
 }

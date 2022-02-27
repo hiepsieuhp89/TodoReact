@@ -1,17 +1,17 @@
 import React, { useMemo } from "react";
-import { useProductsUIContext } from "../ProductsUIContext";
+import { useTodosUIContext } from "../TodosUIContext";
 
-export function ProductsGrouping() {
-  // Products UI Context
-  const productsUIContext = useProductsUIContext();
+export function TodosGrouping() {
+  // Todos UI Context
+  const productsUIContext = useTodosUIContext();
   const productsUIProps = useMemo(() => {
     return {
       ids: productsUIContext.ids,
       setIds: productsUIContext.setIds,
-      openDeleteProductsDialog: productsUIContext.openDeleteProductsDialog,
-      openFetchProductsDialog: productsUIContext.openFetchProductsDialog,
-      openUpdateProductsStatusDialog:
-        productsUIContext.openUpdateProductsStatusDialog,
+      openDeleteTodosDialog: productsUIContext.openDeleteTodosDialog,
+      openFetchTodosDialog: productsUIContext.openFetchTodosDialog,
+      openUpdateTodosStatusDialog:
+        productsUIContext.openUpdateTodosStatusDialog,
     };
   }, [productsUIContext]);
 
@@ -31,7 +31,7 @@ export function ProductsGrouping() {
               <button
                 type="button"
                 className="btn btn-danger font-weight-bolder font-size-sm"
-                onClick={productsUIProps.openDeleteProductsDialog}
+                onClick={productsUIProps.openDeleteTodosDialog}
               >
                 <i className="fa fa-trash"></i> Delete All
               </button>
@@ -39,7 +39,7 @@ export function ProductsGrouping() {
               <button
                 type="button"
                 className="btn btn-light-primary font-weight-bolder font-size-sm"
-                onClick={productsUIProps.openFetchProductsDialog}
+                onClick={productsUIProps.openFetchTodosDialog}
               >
                 <i className="fa fa-stream"></i> Fetch Selected
               </button>
@@ -47,7 +47,7 @@ export function ProductsGrouping() {
               <button
                 type="button"
                 className="btn btn-light-primary font-weight-bolder font-size-sm"
-                onClick={productsUIProps.openUpdateProductsStatusDialog}
+                onClick={productsUIProps.openUpdateTodosStatusDialog}
               >
                 <i className="fa fa-sync-alt"></i> Update Status
               </button>

@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardHeaderToolbar,
 } from "../../../../../../_metronic/_partials/controls";
-import { ProductEditForm } from "./ProductEditForm";
+import { TodoEditForm } from "./TodoEditForm";
 import { Specifications } from "../product-specifications/Specifications";
 import { SpecificationsUIProvider } from "../product-specifications/SpecificationsUIContext";
 import { useSubheader } from "../../../../../../_metronic/layout";
@@ -17,7 +17,7 @@ import { ModalProgressBar } from "../../../../../../_metronic/_partials/controls
 import { RemarksUIProvider } from "../product-remarks/RemarksUIContext";
 import { Remarks } from "../product-remarks/Remarks";
 
-const initProduct = {
+const initTodo = {
   id: undefined,
   model: "",
   manufacture: "Pontiac",
@@ -31,7 +31,7 @@ const initProduct = {
   VINCode: "",
 };
 
-export function ProductEdit({
+export function TodoEdit({
   history,
   match: {
     params: { id },
@@ -54,11 +54,11 @@ export function ProductEdit({
   );
 
   useEffect(() => {
-    dispatch(actions.fetchProduct(id));
+    dispatch(actions.fetchTodo(id));
   }, [id, dispatch]);
 
   useEffect(() => {
-    let _title = id ? "" : "New Product";
+    let _title = id ? "" : "New Todo";
     if (productForEdit && id) {
       _title = `Edit product '${productForEdit.manufacture} ${productForEdit.model} - ${productForEdit.modelYear}'`;
     }
@@ -68,23 +68,23 @@ export function ProductEdit({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productForEdit, id]);
 
-  const saveProduct = (values) => {
+  const saveTodo = (values) => {
     console.log(values);
     if (!id) {
-      dispatch(actions.createProduct(values)).then(() => backToProductsList());
+      dispatch(actions.createTodo(values)).then(() => backToTodosList());
     } else {
-      dispatch(actions.updateProduct(values)).then(() => backToProductsList());
+      dispatch(actions.updateTodo(values)).then(() => backToTodosList());
     }
   };
 
   const btnRef = useRef();  
-  const saveProductClick = () => {
+  const saveTodoClick = () => {
     if (btnRef && btnRef.current) {
       btnRef.current.click();
     }
   };
 
-  const backToProductsList = () => {
+  const backToTodosList = () => {
     history.push(`/e-commerce/products`);
   };
 
@@ -95,7 +95,7 @@ export function ProductEdit({
         <CardHeaderToolbar>
           <button
             type="button"
-            onClick={backToProductsList}
+            onClick={backToTodosList}
             className="btn btn-light"
           >
             <i className="fa fa-arrow-left"></i>
@@ -110,7 +110,7 @@ export function ProductEdit({
           <button
             type="submit"
             className="btn btn-primary ml-2"
-            onClick={saveProductClick}
+            onClick={saveTodoClick}
           >
             Save
           </button>
@@ -138,7 +138,7 @@ export function ProductEdit({
                   role="button"
                   aria-selected={(tab === "remarks").toString()}
                 >
-                  Product remarks
+                  Todo remarks
                 </a>
               </li>
               <li className="nav-item" onClick={() => setTab("specs")}>
@@ -148,7 +148,7 @@ export function ProductEdit({
                   role="tab"
                   aria-selected={(tab === "specs").toString()}
                 >
-                  Product specifications
+                  Todo specifications
                 </a>
               </li>
             </>
@@ -156,20 +156,20 @@ export function ProductEdit({
         </ul>
         <div className="mt-5">
           {tab === "basic" && (
-            <ProductEditForm
+            <TodoEditForm
               actionsLoading={actionsLoading}
-              product={productForEdit || initProduct}
+              product={productForEdit || initTodo}
               btnRef={btnRef}
-              saveProduct={saveProduct}
+              saveTodo={saveTodo}
             />
           )}
           {tab === "remarks" && id && (
-            <RemarksUIProvider currentProductId={id}>
+            <RemarksUIProvider currentTodoId={id}>
               <Remarks />
             </RemarksUIProvider>
           )}
           {tab === "specs" && id && (
-            <SpecificationsUIProvider currentProductId={id}>
+            <SpecificationsUIProvider currentTodoId={id}>
               <Specifications />
             </SpecificationsUIProvider>
           )}

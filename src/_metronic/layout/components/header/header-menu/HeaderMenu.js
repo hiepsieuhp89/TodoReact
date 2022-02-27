@@ -25,7 +25,7 @@ export function HeaderMenu({ layoutProps }) {
                 aria-haspopup="true"
                 className={`menu-item menu-item-submenu menu-item-rel ${getMenuItemActive('/auths')}`}>
                 <NavLink className="menu-link menu-toggle" to="/google-material">
-                    <span className="menu-text">Auths</span>
+                    <span className="menu-text">Todos</span>
                     <i className="menu-arrow"></i>
                 </NavLink>
                 <div className="menu-submenu menu-submenu-classic menu-submenu-left">
@@ -56,8 +56,8 @@ export function HeaderMenu({ layoutProps }) {
                                     </li>
                                     {/*end::3 Level*/}
                                     {/*begin::3 Level*/}
-                                    <li className={`menu-item ${getMenuItemActive('/auths/new')}`}>
-                                        <NavLink className="menu-link" to="/auths/new">
+                                    <li className={`menu-item ${getMenuItemActive('/todos/new')}`}>
+                                        <NavLink className="menu-link" to="/todos/new">
                                             <i className="menu-bullet menu-bullet-dot"><span /></i>
                                             <span className="menu-text">Thêm mới</span>
                                         </NavLink>

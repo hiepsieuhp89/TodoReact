@@ -8,7 +8,7 @@ export const ActionsColumnFormatter = (
   cellContent,
   row,
   rowIndex,
-  { openEditProductPage, openDeleteProductDialog }
+  { openEditTodoPage, openDeleteTodoDialog }
 ) => (
   <>
     <OverlayTrigger
@@ -16,7 +16,7 @@ export const ActionsColumnFormatter = (
     >
       <a
         className="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
-        onClick={() => openEditProductPage(row.id)}
+        onClick={() => openEditTodoPage(row.id)}
       >
         <span className="svg-icon svg-icon-md svg-icon-primary">
           <SVG
@@ -32,7 +32,7 @@ export const ActionsColumnFormatter = (
     >
       <a
         className="btn btn-icon btn-light btn-hover-danger btn-sm"
-        onClick={() => openDeleteProductDialog(row.id)}
+        onClick={() => openDeleteTodoDialog(row.id)}
       >
         <span className="svg-icon svg-icon-md svg-icon-danger">
           <SVG src={toAbsoluteUrl("/media/svg/icons/General/Trash.svg")} />

@@ -9,12 +9,12 @@ import { Input, Select } from "../../../../../../_metronic/_partials/controls";
 import {
   AVAILABLE_COLORS,
   AVAILABLE_MANUFACTURES,
-  ProductStatusTitles,
-  ProductConditionTitles,
-} from "../ProductsUIHelpers";
+  TodoStatusTitles,
+  TodoConditionTitles,
+} from "../TodosUIHelpers";
 
 // Validation schema
-const ProductEditSchema = Yup.object().shape({
+const TodoEditSchema = Yup.object().shape({
   model: Yup.string()
     .min(2, "Minimum 2 symbols")
     .max(50, "Maximum 50 symbols")
@@ -39,19 +39,19 @@ const ProductEditSchema = Yup.object().shape({
   VINCode: Yup.string().required("VINCode is required"),
 });
 
-export function ProductEditForm({
+export function TodoEditForm({
   product,
   btnRef,
-  saveProduct,
+  saveTodo,
 }) {
   return (
     <>
       <Formik
         enableReinitialize={true}
         initialValues={product}
-        validationSchema={ProductEditSchema}
+        validationSchema={TodoEditSchema}
         onSubmit={(values) => {
-          saveProduct(values);
+          saveTodo(values);
         }}
       >
         {({ handleSubmit }) => (
@@ -126,7 +126,7 @@ export function ProductEditForm({
                 </div>
                 <div className="col-lg-4">
                   <Select name="status" label="Status">
-                    {ProductStatusTitles.map((status, index) => (
+                    {TodoStatusTitles.map((status, index) => (
                       <option key={status} value={index}>
                         {status}
                       </option>
@@ -135,7 +135,7 @@ export function ProductEditForm({
                 </div>
                 <div className="col-lg-4">
                   <Select name="condition" label="Condition">
-                    {ProductConditionTitles.map((condition, index) => (
+                    {TodoConditionTitles.map((condition, index) => (
                       <option key={condition} value={index}>
                         {condition}
                       </option>

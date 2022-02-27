@@ -8,7 +8,7 @@ import paginationFactory, {
 } from "react-bootstrap-table2-paginator";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import * as actions from "../../../_redux/products/productsActions";
-import * as uiHelpers from "../ProductsUIHelpers";
+import * as uiHelpers from "../TodosUIHelpers";
 import {
   getSelectRow,
   getHandlerTableChange,
@@ -18,19 +18,19 @@ import {
 } from "../../../../../../_metronic/_helpers";
 import * as columnFormatters from "./column-formatters";
 import { Pagination } from "../../../../../../_metronic/_partials/controls";
-import { useProductsUIContext } from "../ProductsUIContext";
+import { useTodosUIContext } from "../TodosUIContext";
 
-export function ProductsTable() {
-  // Products UI Context
-  const productsUIContext = useProductsUIContext();
+export function TodosTable() {
+  // Todos UI Context
+  const productsUIContext = useTodosUIContext();
   const productsUIProps = useMemo(() => {
     return {
       ids: productsUIContext.ids,
       setIds: productsUIContext.setIds,
       queryParams: productsUIContext.queryParams,
       setQueryParams: productsUIContext.setQueryParams,
-      openEditProductPage: productsUIContext.openEditProductPage,
-      openDeleteProductDialog: productsUIContext.openDeleteProductDialog,
+      openEditTodoPage: productsUIContext.openEditTodoPage,
+      openDeleteTodoDialog: productsUIContext.openDeleteTodoDialog,
     };
   }, [productsUIContext]);
 
@@ -40,13 +40,13 @@ export function ProductsTable() {
     shallowEqual
   );
   const { totalCount, entities, listLoading } = currentState;
-  // Products Redux state
+  // Todos Redux state
   const dispatch = useDispatch();
   useEffect(() => {
     // clear selections list
     productsUIProps.setIds([]);
     // server call by queryParams
-    dispatch(actions.fetchProducts(productsUIProps.queryParams));
+    dispatch(actions.fetchTodos(productsUIProps.queryParams));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productsUIProps.queryParams, dispatch]);
   // Table columns
@@ -108,8 +108,8 @@ export function ProductsTable() {
       text: "Actions",
       formatter: columnFormatters.ActionsColumnFormatter,
       formatExtraData: {
-        openEditProductPage: productsUIProps.openEditProductPage,
-        openDeleteProductDialog: productsUIProps.openDeleteProductDialog,
+        openEditTodoPage: productsUIProps.openEditTodoPage,
+        openDeleteTodoDialog: productsUIProps.openDeleteTodoDialog,
       },
       classes: "text-right pr-0",
       headerClasses: "text-right pr-3",

@@ -4,11 +4,11 @@ import { Modal } from "react-bootstrap";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { ModalProgressBar } from "../../../../../../_metronic/_partials/controls";
 import * as actions from "../../../_redux/products/productsActions";
-import { useProductsUIContext } from "../ProductsUIContext";
+import { useTodosUIContext } from "../TodosUIContext";
 
-export function ProductsDeleteDialog({ show, onHide }) {
-  // Products UI Context
-  const productsUIContext = useProductsUIContext();
+export function TodosDeleteDialog({ show, onHide }) {
+  // Todos UI Context
+  const productsUIContext = useTodosUIContext();
   const productsUIProps = useMemo(() => {
     return {
       ids: productsUIContext.ids,
@@ -17,7 +17,7 @@ export function ProductsDeleteDialog({ show, onHide }) {
     };
   }, [productsUIContext]);
 
-  // Products Redux state
+  // Todos Redux state
   const dispatch = useDispatch();
   const { isLoading } = useSelector(
     (state) => ({ isLoading: state.products.actionsLoading }),
@@ -35,11 +35,11 @@ export function ProductsDeleteDialog({ show, onHide }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productsUIProps.ids]);
 
-  const deleteProducts = () => {
+  const deleteTodos = () => {
     // server request for deleting product by seleted ids
-    dispatch(actions.deleteProducts(productsUIProps.ids)).then(() => {
+    dispatch(actions.deleteTodos(productsUIProps.ids)).then(() => {
       // refresh list after deletion
-      dispatch(actions.fetchProducts(productsUIProps.queryParams)).then(() => {
+      dispatch(actions.fetchTodos(productsUIProps.queryParams)).then(() => {
         // clear selections list
         productsUIProps.setIds([]);
         // closing delete modal
@@ -57,14 +57,14 @@ export function ProductsDeleteDialog({ show, onHide }) {
       {isLoading && <ModalProgressBar />}
       <Modal.Header closeButton>
         <Modal.Title id="example-modal-sizes-title-lg">
-          Products Delete
+          Todos Delete
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {!isLoading && (
           <span>Are you sure to permanently delete selected products?</span>
         )}
-        {isLoading && <span>Products are deleting...</span>}
+        {isLoading && <span>Todos are deleting...</span>}
       </Modal.Body>
       <Modal.Footer>
         <div>
@@ -78,7 +78,7 @@ export function ProductsDeleteDialog({ show, onHide }) {
           <> </>
           <button
             type="button"
-            onClick={deleteProducts}
+            onClick={deleteTodos}
             className="btn btn-primary btn-elevate"
           >
             Delete
