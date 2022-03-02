@@ -6,7 +6,7 @@ import {
   CardHeaderToolbar,
 } from "../../../../_metronic/_partials/controls";
 import { TodosFilter } from "./products-filter/TodosFilter";
-import { TodosTable } from "./products-table/TodosTable";
+import { TodosTable } from "./todos-table/TodosTable";
 import { TodosGrouping } from "./products-grouping/TodosGrouping";
 import { useTodosUIContext } from "./TodosUIContext";
 

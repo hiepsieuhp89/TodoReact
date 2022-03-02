@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Redirect, Switch, Route } from "react-router-dom";
 import { LayoutSplashScreen, ContentRoute } from "../_metronic/layout";
-import { TodoPage } from "./pages/custom-pages/TodosPage";
+import { TodosPage } from "./pages/custom-pages/TodosPage";
 
 const GoogleMaterialPage = lazy(() =>
   import("./modules/GoogleMaterialExamples/GoogleMaterialPage")
@@ -29,7 +29,7 @@ export default function BasePage() {
           /* Redirect from root URL to /dashboard. */
           <Redirect exact from="/" to="/auths" />
         }
-        <ContentRoute path="/auths" component={TodoPage} />
+        <ContentRoute path="/auths" component={TodosPage} />
       </Switch>
     </Suspense>
   );

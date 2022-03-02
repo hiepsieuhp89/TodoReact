@@ -8,7 +8,7 @@ import { TodosUpdateStatusDialog } from "./products-update-status-dialog/TodosUp
 import { TodosCard } from "./TodosCard";
 import { TodosUIProvider } from "./TodosUIContext";
 
-export function TodosPage({ history }) {
+export function TodoPage({ history }) {
   const productsUIEvents = {
     newTodoButtonClick: () => {
       history.push("/todos/new");
